@@ -9,6 +9,10 @@ typedef struct llist {
 
 Llist *NewEmptyLlist();
 Llist *NewLlist(void *payload);
-Llist *add(Llist *l, void *v);
+void FreeLlist(Llist *l);
+
+Llist *Llist_add(Llist *l, void *v);
+
+#include "llist.c"
 
 #endif

@@ -3,4 +3,4 @@
 
 Esto es simplemente para estudiar algo de C.
 
-Correr `make test_unit` a manera de ejemplo.
+Correr `make test` a manera de ejemplo.
