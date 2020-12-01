@@ -17,7 +17,6 @@ Llist *NewEmptyLlist() {
 void _freeLlistNext(Llist *l) {
   if (l->next != NULL) {
     _freeLlistNext(l->next);
-
     free(l->next);
   }
 }
@@ -40,6 +39,7 @@ Llist *Llist_add(Llist *l, void *v) {
 
   if (l->payload == NULL) {
     l->payload = v;
+
     return l;
   }
 

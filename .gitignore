@@ -1,3 +1,6 @@
 acutest.h
 main
 test
+test.gcda
+test.gcno
+coverage/
