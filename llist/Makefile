@@ -5,5 +5,5 @@ test:
 	fi && \
 	gcc test.c -o test --coverage && \
 	./test -v && \
-	gcovr  -r . --html --html-details -o coverage/index.html;
+	gcovr  -r . --html --html-details -e "acutest.h" -o coverage/index.html;
 	rm -f test test.gcda test.gcno;
