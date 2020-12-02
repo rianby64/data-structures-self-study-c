@@ -19,6 +19,8 @@ Llist *NewEmptyLlist() {
 }
 
 void _freeLlistNext(Llist *l) {
+  assert(l != NULL);
+
   if (l->next != NULL) {
     _freeLlistNext(l->next);
     free(l->next);
@@ -26,6 +28,8 @@ void _freeLlistNext(Llist *l) {
 }
 
 void FreeLlist(Llist *l) {
+  assert(l != NULL);
+
   _freeLlistNext(l);
   free(l);
 }
