@@ -2,10 +2,15 @@
 #ifndef LLIST_LLIST_H
 #define LLIST_LLIST_H
 
+#include <stdbool.h>
+
 typedef struct llist {
   void* payload;
   struct llist *next;
   struct llist *back;
+
+  struct llist *head;
+  struct llist *tail;
 } Llist;
 
 Llist *NewEmptyLlist();

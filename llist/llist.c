@@ -13,6 +13,8 @@ Llist *NewEmptyLlist() {
   newl->next = NULL;
   newl->back = NULL;
 
+  newl->head = newl;
+  newl->tail = newl;
   return newl;
 }
 
@@ -53,8 +55,15 @@ Llist *Llist_add(Llist *l, void *v) {
   Llist *newl = NewLlist(v);
 
   curr->next = newl;
-  newl->payload = v;
   newl->back = curr;
+  newl->payload = v;
+
+  curr = newl;
+  while (curr->back != NULL) {
+    curr->head = l->head;
+    curr->tail = newl;
+    curr = curr->back;
+  }
 
   return newl;
 }

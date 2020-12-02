@@ -259,6 +259,53 @@ void test_newemptylist_add_three_items_del_last_item(void) {
 
   FreeLlist(newllist);
 }
+void test_newemptylist_add_three_items_check_tail_head(void) {
+  void *expected1 = (void *)55;
+  void *expected2 = (void *)66;
+  void *expected3 = (void *)77;
+  Llist *newllist = NewEmptyLlist();
+  TEST_ASSERT_(newllist != NULL, "NewLlist expected to be not NULL");
+
+  TEST_ASSERT_(newllist->tail == newllist, "NewLlist tail is NewLlist");
+  TEST_ASSERT_(newllist->head == newllist, "NewLlist head is NewLlist");
+
+  Llist *added1 = Llist_add(newllist, expected1);
+  TEST_ASSERT_(newllist->tail == added1, "NewLlist tail is added1");
+  TEST_ASSERT_(newllist->head == newllist, "NewLlist head is NewLlist");
+  TEST_ASSERT_(added1->tail == added1, "NewLlist tail is added1");
+  TEST_ASSERT_(added1->head == newllist, "NewLlist head is NewLlist");
+
+  Llist *added2 = Llist_add(newllist, expected2);
+  TEST_ASSERT_(newllist->tail == added2, "NewLlist tail is added2");
+  TEST_ASSERT_(newllist->head == newllist, "NewLlist head is newllist");
+  TEST_ASSERT_(added2->tail == added2, "NewLlist tail is added2");
+  TEST_ASSERT_(added2->head == newllist, "NewLlist head is NewLlist");
+
+  Llist *added3 = Llist_add(newllist, expected3);
+  TEST_ASSERT_(newllist->tail == added3, "NewLlist tail is added3");
+  TEST_ASSERT_(newllist->head == newllist, "NewLlist head is newllist");
+  TEST_ASSERT_(added3->tail == added3, "NewLlist tail is added3");
+  TEST_ASSERT_(added3->head == newllist, "NewLlist head is NewLlist");
+
+  TEST_ASSERT_(newllist == added1, "NewLlist has added1");
+  TEST_ASSERT_(newllist->next == added2, "NewLlist has added2");
+  TEST_ASSERT_(newllist->next->next == added3, "NewLlist has added3");
+  TEST_ASSERT_(newllist->next->next->next == NULL, "NewLlist has no 4th item");
+
+  TEST_ASSERT_(newllist->back == NULL, "NewLlist back is NULL");
+  TEST_ASSERT_(newllist->next->back == added1, "NewLlist 2nd item has back === 1st item");
+  TEST_ASSERT_(newllist->next->next->back == added2, "NewLlist 3rd item has back === 2nd item");
+
+  TEST_ASSERT_(added1->back == NULL, "added1 back is NULL");
+  TEST_ASSERT_(added2->back == added1, "added2 back is added1");
+  TEST_ASSERT_(added3->back == added2, "added3 back is added2");
+
+  TEST_ASSERT_(newllist->payload == expected1, "NewLlist's 1st item is expected1");
+  TEST_ASSERT_(newllist->next->payload == expected2, "NewLlist's 2nd item is expected2");
+  TEST_ASSERT_(newllist->next->next->payload == expected3, "NewLlist's 3rd item is expected3");
+
+  FreeLlist(newllist);
+}
 
 TEST_LIST = {
   {"NewEmptyLlist() returns an empty list", test_newemptyllist},
@@ -272,5 +319,6 @@ TEST_LIST = {
   {"NewLlist() add three elements, delete first item", test_newemptylist_add_three_items_del_first_item},
   {"NewLlist() add three elements, delete item in the middle", test_newemptylist_add_three_items_del_item_in_the_middle},
   {"NewLlist() add three elements, delete last item", test_newemptylist_add_three_items_del_last_item},
+  {"Llist() add three elements, check tail and head", test_newemptylist_add_three_items_check_tail_head},
   {0}
 };
