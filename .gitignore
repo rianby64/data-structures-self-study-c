@@ -1,5 +1,6 @@
 acutest.h
 main
+main.c
 test
 test.gcda
 test.gcno

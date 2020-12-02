@@ -1,6 +1,7 @@
 
 #include <assert.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 #include "llist.h"
 
@@ -10,6 +11,7 @@ Llist *NewEmptyLlist() {
 
   newl->payload = NULL;
   newl->next = NULL;
+  newl->back = NULL;
 
   return newl;
 }
@@ -52,6 +54,37 @@ Llist *Llist_add(Llist *l, void *v) {
 
   curr->next = newl;
   newl->payload = v;
+  newl->back = curr;
 
   return newl;
+}
+
+bool Llist_del(Llist *l) {
+  assert(l != NULL);
+
+  while (true) {
+    if (l->back != NULL && l->next != NULL) {
+      l->next->back = l->back;
+      l->back->next = l->next;
+      break;
+    }
+
+    if (l->back != NULL && l->next == NULL) {
+      l->back->next = NULL;
+      break;
+    }
+
+    if (l->back == NULL && l->next != NULL) {
+      l->next->back = NULL;
+      l->next = l->next->next;
+      break;
+    }
+
+    break;
+  }
+
+  l->next = NULL;
+  l->payload = NULL;
+  FreeLlist(l);
+  return true;
 }
