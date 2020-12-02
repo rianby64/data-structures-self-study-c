@@ -69,6 +69,9 @@ Llist *Llist_add(Llist *l, void *v) {
     curr = curr->back;
   }
 
+  curr->tail = newl;
+  curr->head = l->head;
+
   return newl;
 }
 
