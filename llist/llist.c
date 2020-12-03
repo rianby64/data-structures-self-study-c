@@ -43,10 +43,14 @@ Llist* Llist_new(void *payload) {
 }
 
 Llist* Llist_head(Llist *l) {
+  assert(l != NULL);
+
   return l->head;
 }
 
 Llist* Llist_tail(Llist *l) {
+  assert(l != NULL);
+
   return l->tail;
 }
 
