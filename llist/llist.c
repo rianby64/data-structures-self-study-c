@@ -18,20 +18,22 @@ Llist* Llist_new_empty() {
   return newl;
 }
 
-void _freeLlistNext(Llist *l) {
+void _free_Llist_next(Llist *l) {
   assert(l != NULL);
 
   if (l->next != NULL) {
-    _freeLlistNext(l->next);
+    _free_Llist_next(l->next);
     free(l->next);
+    l->next = NULL;
   }
 }
 
 void Llist_free(Llist *l) {
   assert(l != NULL);
 
-  _freeLlistNext(l);
+  _free_Llist_next(l);
   free(l);
+  l = NULL;
 }
 
 Llist* Llist_new(void *payload) {
