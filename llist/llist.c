@@ -5,7 +5,7 @@
 
 #include "llist.h"
 
-Llist *NewEmptyLlist() {
+Llist *Llist_new_empty() {
   Llist *newl = malloc(sizeof(Llist));
   assert(newl != NULL);
 
@@ -27,15 +27,15 @@ void _freeLlistNext(Llist *l) {
   }
 }
 
-void FreeLlist(Llist *l) {
+void Llist_free(Llist *l) {
   assert(l != NULL);
 
   _freeLlistNext(l);
   free(l);
 }
 
-Llist *NewLlist(void *payload) {
-  Llist *newl = NewEmptyLlist();
+Llist *Llist_new(void *payload) {
+  Llist *newl = Llist_new_empty();
 
   newl->payload = payload;
 
@@ -51,7 +51,7 @@ Llist *Llist_append(Llist *l, void *v) {
     return l;
   }
 
-  Llist *newl = NewLlist(v);
+  Llist *newl = Llist_new(v);
   l->tail->next = newl;
   newl->back = l->tail;
   newl->payload = v;
@@ -112,7 +112,7 @@ bool Llist_del(Llist *l) {
 
   l->next = NULL;
   l->payload = NULL;
-  FreeLlist(l);
+  Llist_free(l);
 
   return true;
 }
