@@ -13,6 +13,9 @@ typedef struct stack {
 Stack* Stack_new();
 void Stack_free(Stack *s);
 
+void* Stack_pop();
+void Stack_push(void *v);
+
 #include "stack.c"
 
 #endif

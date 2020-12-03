@@ -23,3 +23,7 @@ void Stack_free(Stack *s) {
   free(s);
   s = NULL;
 }
+
+void* Stack_pop() {
+  return NULL;
+}

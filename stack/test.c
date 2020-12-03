@@ -6,10 +6,13 @@
 void test_new_empty_stack(void);
 
 void test_new_empty_stack(void) {
-
   Stack *stack = Stack_new();
 
   TEST_ASSERT_(stack != NULL, "New empty stack expected to be not NULL");
+
+  void *v = Stack_pop(stack);
+
+  TEST_ASSERT_(v == NULL, "Pop from empty stack === NULL");
 
   Stack_free(stack);
 }
