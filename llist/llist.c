@@ -42,7 +42,7 @@ Llist *NewLlist(void *payload) {
   return newl;
 }
 
-Llist *Llist_add(Llist *l, void *v) {
+Llist *Llist_append(Llist *l, void *v) {
   assert(l != NULL);
 
   if (l->payload == NULL) {
@@ -70,7 +70,6 @@ Llist *Llist_add(Llist *l, void *v) {
   }
 
   curr->tail = newl;
-  curr->head = l->head;
 
   return newl;
 }

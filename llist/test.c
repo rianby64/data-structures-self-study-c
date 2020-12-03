@@ -22,10 +22,10 @@ void test_newllist(void) {
   FreeLlist(newllist);
 }
 
-void test_newemptyllist_add_one_item(void) {
+void test_newemptyllist_append_one_item(void) {
   void *expected = (void *)55;
   Llist *newllist = NewEmptyLlist();
-  Llist *added = Llist_add(newllist, expected);
+  Llist *added = Llist_append(newllist, expected);
 
   void *actual = newllist->payload;
 
@@ -36,13 +36,13 @@ void test_newemptyllist_add_one_item(void) {
   FreeLlist(newllist);
 }
 
-void test_newemptyllist_add_two_items(void) {
+void test_newemptyllist_append_two_items(void) {
   void *expected1 = (void *)55;
   void *expected2 = (void *)66;
 
   Llist *newllist = NewEmptyLlist();
-  Llist *added1 = Llist_add(newllist, expected1);
-  Llist *added2 = Llist_add(added1, expected2);
+  Llist *added1 = Llist_append(newllist, expected1);
+  Llist *added2 = Llist_append(added1, expected2);
 
   void *actual1 = newllist->payload;
   void *actual2 = newllist->next->payload;
@@ -56,13 +56,13 @@ void test_newemptyllist_add_two_items(void) {
   FreeLlist(newllist);
 }
 
-void test_newemptyllist_add_from_head_add_two_items(void) {
+void test_newemptyllist_append_from_head_append_two_items(void) {
   void *expected1 = (void *)55;
   void *expected2 = (void *)66;
 
   Llist *newllist = NewEmptyLlist();
-  Llist *added1 = Llist_add(newllist, expected1);
-  Llist *added2 = Llist_add(newllist, expected2);
+  Llist *added1 = Llist_append(newllist, expected1);
+  Llist *added2 = Llist_append(newllist, expected2);
 
   void *actual1 = newllist->payload;
   void *actual2 = newllist->next->payload;
@@ -77,15 +77,15 @@ void test_newemptyllist_add_from_head_add_two_items(void) {
   FreeLlist(newllist);
 }
 
-void test_newemptyllist_add_three_items(void) {
+void test_newemptyllist_append_three_items(void) {
   void *expected1 = (void *)55;
   void *expected2 = (void *)66;
   void *expected3 = (void *)77;
 
   Llist *newllist = NewEmptyLlist();
-  Llist *added1 = Llist_add(newllist, expected1);
-  Llist *added2 = Llist_add(added1, expected2);
-  Llist *added3 = Llist_add(added2, expected3);
+  Llist *added1 = Llist_append(newllist, expected1);
+  Llist *added2 = Llist_append(added1, expected2);
+  Llist *added3 = Llist_append(added2, expected3);
 
   void *actual1 = newllist->payload;
   void *actual2 = newllist->next->payload;
@@ -103,15 +103,15 @@ void test_newemptyllist_add_three_items(void) {
   FreeLlist(newllist);
 }
 
-void test_newemptyllist_add_from_head_add_three_items(void) {
+void test_newemptyllist_append_from_head_append_three_items(void) {
   void *expected1 = (void *)55;
   void *expected2 = (void *)66;
   void *expected3 = (void *)77;
 
   Llist *newllist = NewEmptyLlist();
-  Llist *added1 = Llist_add(newllist, expected1);
-  Llist *added2 = Llist_add(newllist, expected2);
-  Llist *added3 = Llist_add(newllist, expected3);
+  Llist *added1 = Llist_append(newllist, expected1);
+  Llist *added2 = Llist_append(newllist, expected2);
+  Llist *added3 = Llist_append(newllist, expected3);
 
   void *actual1 = newllist->payload;
   void *actual2 = newllist->next->payload;
@@ -129,10 +129,10 @@ void test_newemptyllist_add_from_head_add_three_items(void) {
   FreeLlist(newllist);
 }
 
-void test_newemptylist_add_del_item(void) {
+void test_newemptylist_append_del_item(void) {
   void *expected = (void *)55;
   Llist *newllist = NewEmptyLlist();
-  Llist *added = Llist_add(newllist, expected);
+  Llist *added = Llist_append(newllist, expected);
 
   TEST_ASSERT_(newllist != NULL, "NewLlist expected to be not NULL");
   TEST_ASSERT_(newllist == added, "NewLlist is added1");
@@ -142,14 +142,14 @@ void test_newemptylist_add_del_item(void) {
   TEST_ASSERT_(deleted == true, "deleted succeeded");
 }
 
-void test_newemptylist_add_three_items_del_item_in_the_middle(void) {
+void test_newemptylist_append_three_items_del_item_in_the_middle(void) {
   void *expected1 = (void *)55;
   void *expected2 = (void *)66;
   void *expected3 = (void *)77;
   Llist *newllist = NewEmptyLlist();
-  Llist *added1 = Llist_add(newllist, expected1);
-  Llist *added2 = Llist_add(newllist, expected2);
-  Llist *added3 = Llist_add(newllist, expected3);
+  Llist *added1 = Llist_append(newllist, expected1);
+  Llist *added2 = Llist_append(newllist, expected2);
+  Llist *added3 = Llist_append(newllist, expected3);
 
   TEST_ASSERT_(newllist != NULL, "NewLlist expected to be not NULL");
   TEST_ASSERT_(newllist == added1, "NewLlist has added1");
@@ -181,14 +181,14 @@ void test_newemptylist_add_three_items_del_item_in_the_middle(void) {
   FreeLlist(newllist);
 }
 
-void test_newemptylist_add_three_items_del_first_item(void) {
+void test_newemptylist_append_three_items_del_first_item(void) {
   void *expected1 = (void *)55;
   void *expected2 = (void *)66;
   void *expected3 = (void *)77;
   Llist *newllist = NewEmptyLlist();
-  Llist *added1 = Llist_add(newllist, expected1);
-  Llist *added2 = Llist_add(newllist, expected2);
-  Llist *added3 = Llist_add(newllist, expected3);
+  Llist *added1 = Llist_append(newllist, expected1);
+  Llist *added2 = Llist_append(newllist, expected2);
+  Llist *added3 = Llist_append(newllist, expected3);
 
   TEST_ASSERT_(newllist != NULL, "NewLlist expected to be not NULL");
   TEST_ASSERT_(newllist == added1, "NewLlist has added1");
@@ -221,14 +221,14 @@ void test_newemptylist_add_three_items_del_first_item(void) {
   FreeLlist(newllist);
 }
 
-void test_newemptylist_add_three_items_del_last_item(void) {
+void test_newemptylist_append_three_items_del_last_item(void) {
   void *expected1 = (void *)55;
   void *expected2 = (void *)66;
   void *expected3 = (void *)77;
   Llist *newllist = NewEmptyLlist();
-  Llist *added1 = Llist_add(newllist, expected1);
-  Llist *added2 = Llist_add(newllist, expected2);
-  Llist *added3 = Llist_add(newllist, expected3);
+  Llist *added1 = Llist_append(newllist, expected1);
+  Llist *added2 = Llist_append(newllist, expected2);
+  Llist *added3 = Llist_append(newllist, expected3);
 
   TEST_ASSERT_(newllist != NULL, "NewLlist expected to be not NULL");
   TEST_ASSERT_(newllist == added1, "NewLlist has added1");
@@ -259,7 +259,7 @@ void test_newemptylist_add_three_items_del_last_item(void) {
 
   FreeLlist(newllist);
 }
-void test_newemptylist_add_three_items_check_tail_head(void) {
+void test_newemptylist_append_three_items_check_tail_head(void) {
   void *expected1 = (void *)55;
   void *expected2 = (void *)66;
   void *expected3 = (void *)77;
@@ -269,19 +269,19 @@ void test_newemptylist_add_three_items_check_tail_head(void) {
   TEST_ASSERT_(newllist->tail == newllist, "NewLlist tail is NewLlist");
   TEST_ASSERT_(newllist->head == newllist, "NewLlist head is NewLlist");
 
-  Llist *added1 = Llist_add(newllist, expected1);
+  Llist *added1 = Llist_append(newllist, expected1);
   TEST_ASSERT_(newllist->tail == added1, "NewLlist tail is added1");
   TEST_ASSERT_(newllist->head == newllist, "NewLlist head is NewLlist");
   TEST_ASSERT_(added1->tail == added1, "NewLlist tail is added1");
   TEST_ASSERT_(added1->head == newllist, "NewLlist head is NewLlist");
 
-  Llist *added2 = Llist_add(newllist, expected2);
+  Llist *added2 = Llist_append(newllist, expected2);
   TEST_ASSERT_(newllist->tail == added2, "NewLlist tail is added2");
   TEST_ASSERT_(newllist->head == newllist, "NewLlist head is newllist");
   TEST_ASSERT_(added2->tail == added2, "NewLlist tail is added2");
   TEST_ASSERT_(added2->head == newllist, "NewLlist head is NewLlist");
 
-  Llist *added3 = Llist_add(newllist, expected3);
+  Llist *added3 = Llist_append(newllist, expected3);
   TEST_ASSERT_(newllist->tail == added3, "NewLlist tail is added3");
   TEST_ASSERT_(newllist->head == newllist, "NewLlist head is newllist");
   TEST_ASSERT_(added3->tail == added3, "NewLlist tail is added3");
@@ -310,15 +310,15 @@ void test_newemptylist_add_three_items_check_tail_head(void) {
 TEST_LIST = {
   {"NewEmptyLlist() returns an empty list", test_newemptyllist},
   {"NewLlist() returns a list", test_newllist},
-  {"NewEmptyLlist() add one item", test_newemptyllist_add_one_item},
-  {"NewEmptyLlist() add two items", test_newemptyllist_add_two_items},
-  {"NewEmptyLlist() add two items, second item added from the head", test_newemptyllist_add_from_head_add_two_items},
-  {"NewEmptyLlist() add three items", test_newemptyllist_add_three_items},
-  {"NewEmptyLlist() add three items, add then from the head", test_newemptyllist_add_from_head_add_three_items},
-  {"NewLList() delete first item", test_newemptylist_add_del_item},
-  {"NewLlist() add three elements, delete first item", test_newemptylist_add_three_items_del_first_item},
-  {"NewLlist() add three elements, delete item in the middle", test_newemptylist_add_three_items_del_item_in_the_middle},
-  {"NewLlist() add three elements, delete last item", test_newemptylist_add_three_items_del_last_item},
-  {"Llist() add three elements, check tail and head", test_newemptylist_add_three_items_check_tail_head},
+  {"NewEmptyLlist() add one item", test_newemptyllist_append_one_item},
+  {"NewEmptyLlist() add two items", test_newemptyllist_append_two_items},
+  {"NewEmptyLlist() add two items, second item added from the head", test_newemptyllist_append_from_head_append_two_items},
+  {"NewEmptyLlist() add three items", test_newemptyllist_append_three_items},
+  {"NewEmptyLlist() add three items, add then from the head", test_newemptyllist_append_from_head_append_three_items},
+  {"NewLList() delete first item", test_newemptylist_append_del_item},
+  {"NewLlist() add three elements, delete first item", test_newemptylist_append_three_items_del_first_item},
+  {"NewLlist() add three elements, delete item in the middle", test_newemptylist_append_three_items_del_item_in_the_middle},
+  {"NewLlist() add three elements, delete last item", test_newemptylist_append_three_items_del_last_item},
+  {"Llist() add three elements, check tail and head", test_newemptylist_append_three_items_check_tail_head},
   {0}
 };

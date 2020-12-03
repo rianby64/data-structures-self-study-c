@@ -17,7 +17,10 @@ Llist *NewEmptyLlist();
 Llist *NewLlist(void *payload);
 void FreeLlist(Llist *l);
 
-Llist *Llist_add(Llist *l, void *v);
+Llist *Llist_append(Llist *l, void *v);
+Llist *Llist_add_before(Llist *l, void *v);
+Llist *Llist_add_after(Llist *l, void *v);
+
 bool Llist_del(Llist *l);
 
 #include "llist.c"
