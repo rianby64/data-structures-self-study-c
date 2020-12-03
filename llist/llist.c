@@ -77,29 +77,48 @@ Llist *Llist_append(Llist *l, void *v) {
 bool Llist_del(Llist *l) {
   assert(l != NULL);
 
+  Llist *head = l->head;
+  Llist *tail = l->tail;
+
   while (true) {
     if (l->back != NULL && l->next != NULL) {
       l->next->back = l->back;
       l->back->next = l->next;
+
       break;
     }
 
     if (l->back != NULL && l->next == NULL) {
+      tail = l->back;
       l->back->next = NULL;
+
       break;
     }
 
     if (l->back == NULL && l->next != NULL) {
+      head = l->next;
       l->next->back = NULL;
       l->next = l->next->next;
+
       break;
     }
 
     break;
   }
 
+  Llist *curr = head;
+  while (curr->next != NULL) {
+    curr->head = head;
+    curr->tail = tail;
+    curr = curr->next;
+  }
+
+  curr->head = head;
+  curr->tail = tail;
+
   l->next = NULL;
   l->payload = NULL;
   FreeLlist(l);
+
   return true;
 }
