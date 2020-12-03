@@ -102,12 +102,19 @@ void test_newemptyllist_append_three_items(void) {
 
   TEST_ASSERT_(newllist->head == added1, "Added1 head is added1");
   TEST_ASSERT_(newllist->tail == added3, "Added1 tail is added3");
+  TEST_ASSERT_(newllist->next == added2, "Added1 next is added2");
+  TEST_ASSERT_(newllist->back == NULL, "Added1 back is NULL");
+
   TEST_ASSERT_(newllist->next->head == added1, "Added2 head is added1");
   TEST_ASSERT_(newllist->next->tail == added3, "Added2 tail is added3");
+  TEST_ASSERT_(newllist->next->next == added3, "Added2 next is added3");
+  TEST_ASSERT_(newllist->next->back == added1, "Added2 back is added1");
+
   TEST_ASSERT_(newllist->next->next->head == added1, "Added3 head is added1");
   TEST_ASSERT_(newllist->next->next->tail == added3, "Added3 tail is added3");
-  TEST_ASSERT_(newllist->next == added2, "NewLlist->next is added2");
-  TEST_ASSERT_(newllist->next->next == added3, "NewLlist->next->next is added3");
+  TEST_ASSERT_(newllist->next->next->next == NULL, "Added3 next is NUL");
+  TEST_ASSERT_(newllist->next->next->back == added2, "Added3 back is added2");
+
 
   FreeLlist(newllist);
 }
