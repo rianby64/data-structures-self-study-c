@@ -24,6 +24,13 @@ void Stack_free(Stack *s) {
   s = NULL;
 }
 
-void* Stack_pop() {
+void Stack_push(Stack *s, void *v) {
+  assert(s != NULL);
+  assert(s->list != NULL);
+
+  Llist_append(s->list, v);
+}
+
+void* Stack_pop(Stack *s) {
   return NULL;
 }
