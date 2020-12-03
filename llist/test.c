@@ -3,6 +3,20 @@
 #include "acutest.h"
 #include "llist.h"
 
+void test_newemptyllist(void);
+void test_newllist(void);
+void test_newemptyllist_append_one_item(void);
+void test_newemptyllist_append_two_items(void);
+void test_newemptyllist_append_from_head_append_two_items(void);
+void test_newemptyllist_append_three_items(void);
+void test_newemptyllist_append_from_head_append_three_items(void);
+void test_newemptylist_append_del_item(void);
+void test_newemptylist_append_three_items_del_item_in_the_middle(void);
+void test_newemptylist_append_three_items_del_first_item(void);
+void test_newemptylist_append_three_items_del_last_item(void);
+void test_newemptylist_append_three_items_check_tail_head(void);
+void test_newemptylist_prepend_three_items_check_tail_head(void);
+
 void test_newemptyllist(void) {
   Llist *newemptyllist = Llist_new_empty();
 
