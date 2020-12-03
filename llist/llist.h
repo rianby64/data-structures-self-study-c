@@ -19,6 +19,9 @@ Llist* Llist_new_empty();                   // OK
 Llist* Llist_new(void *payload);            // OK
 void Llist_free(Llist *l);                  // OK
 
+Llist* Llist_head(Llist *l);                // OK
+Llist* Llist_tail(Llist *l);                // OK
+
 Llist* Llist_append(Llist *l, void *v);     // OK
 Llist* Llist_prepend(Llist *l, void *v);    // OK
 Llist* Llist_add_before(Llist *l, void *v);

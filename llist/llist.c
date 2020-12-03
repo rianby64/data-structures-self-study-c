@@ -42,6 +42,14 @@ Llist* Llist_new(void *payload) {
   return newl;
 }
 
+Llist* Llist_head(Llist *l) {
+  return l->head;
+}
+
+Llist* Llist_tail(Llist *l) {
+  return l->tail;
+}
+
 Llist* Llist_append(Llist *l, void *v) {
   assert(l != NULL);
 

@@ -114,18 +114,18 @@ void test_newemptyllist_append_three_items(void) {
   TEST_ASSERT_(expected3 == actual3, "NewList->next->next->payload is defined with the expected3");
   TEST_ASSERT_(newllist->next->next->next == NULL, "Llist_new within three nexts is NULL");
 
-  TEST_ASSERT_(newllist->head == added1, "Added1 head is added1");
-  TEST_ASSERT_(newllist->tail == added3, "Added1 tail is added3");
+  TEST_ASSERT_(Llist_head(newllist) == added1, "Added1 head is added1");
+  TEST_ASSERT_(Llist_tail(newllist) == added3, "Added1 tail is added3");
   TEST_ASSERT_(newllist->next == added2, "Added1 next is added2");
   TEST_ASSERT_(newllist->back == NULL, "Added1 back is NULL");
 
-  TEST_ASSERT_(newllist->next->head == added1, "Added2 head is added1");
-  TEST_ASSERT_(newllist->next->tail == added3, "Added2 tail is added3");
+  TEST_ASSERT_(Llist_head(newllist->next) == added1, "Added2 head is added1");
+  TEST_ASSERT_(Llist_tail(newllist->next) == added3, "Added2 tail is added3");
   TEST_ASSERT_(newllist->next->next == added3, "Added2 next is added3");
   TEST_ASSERT_(newllist->next->back == added1, "Added2 back is added1");
 
-  TEST_ASSERT_(newllist->next->next->head == added1, "Added3 head is added1");
-  TEST_ASSERT_(newllist->next->next->tail == added3, "Added3 tail is added3");
+  TEST_ASSERT_(Llist_head(newllist->next->next) == added1, "Added3 head is added1");
+  TEST_ASSERT_(Llist_tail(newllist->next->next) == added3, "Added3 tail is added3");
   TEST_ASSERT_(newllist->next->next->next == NULL, "Added3 next is NUL");
   TEST_ASSERT_(newllist->next->next->back == added2, "Added3 back is added2");
 
@@ -208,13 +208,13 @@ void test_newemptylist_append_three_items_del_item_in_the_middle(void) {
   TEST_ASSERT_(newllist->next->back == added1, "after delete Llist_new has added1");
   TEST_ASSERT_(newllist->next->next == NULL, "after delete Llist_new has no 3rd item");
 
-  TEST_ASSERT_(newllist->head == added1, "Added1 head is added1");
-  TEST_ASSERT_(newllist->tail == added3, "Added1 tail is added3");
+  TEST_ASSERT_(Llist_head(newllist) == added1, "Added1 head is added1");
+  TEST_ASSERT_(Llist_tail(newllist) == added3, "Added1 tail is added3");
   TEST_ASSERT_(newllist->next == added3, "Added1 next is added3");
   TEST_ASSERT_(newllist->back == NULL, "Added1 back is NULL");
 
-  TEST_ASSERT_(newllist->next->head == added1, "Added3 head is added1");
-  TEST_ASSERT_(newllist->next->tail == added3, "Added3 tail is added3");
+  TEST_ASSERT_(Llist_head(newllist->next) == added1, "Added3 head is added1");
+  TEST_ASSERT_(Llist_tail(newllist->next) == added3, "Added3 tail is added3");
   TEST_ASSERT_(newllist->next->next == NULL, "Added3 next is NULL");
   TEST_ASSERT_(newllist->next->back == added1, "Added3 back is added1");
 
@@ -258,13 +258,13 @@ void test_newemptylist_append_three_items_del_first_item(void) {
   TEST_ASSERT_(newllist->next->back == added2, "after delete Llist_new has added2");
   TEST_ASSERT_(newllist->next->next == NULL, "after delete Llist_new has no 3rd item");
 
-  TEST_ASSERT_(newllist->head == added2, "Added2 head is added2");
-  TEST_ASSERT_(newllist->tail == added3, "Added2 tail is added3");
+  TEST_ASSERT_(Llist_head(newllist) == added2, "Added2 head is added2");
+  TEST_ASSERT_(Llist_tail(newllist) == added3, "Added2 tail is added3");
   TEST_ASSERT_(newllist->next == added3, "Added2 next is added3");
   TEST_ASSERT_(newllist->back == NULL, "Added2 back is NULL");
 
-  TEST_ASSERT_(newllist->next->head == added2, "Added3 head is added2");
-  TEST_ASSERT_(newllist->next->tail == added3, "Added3 tail is added3");
+  TEST_ASSERT_(Llist_head(newllist->next) == added2, "Added3 head is added2");
+  TEST_ASSERT_(Llist_tail(newllist->next) == added3, "Added3 tail is added3");
   TEST_ASSERT_(newllist->next->next == NULL, "Added3 next is NULL");
   TEST_ASSERT_(newllist->next->back == added2, "Added3 back is added2");
 
@@ -299,18 +299,18 @@ void test_newemptylist_append_three_items_del_last_item(void) {
   TEST_ASSERT_(newllist->next->payload == expected2, "Llist_new's 2nd item is expected2");
   TEST_ASSERT_(newllist->next->next->payload == expected3, "Llist_new's 3rd item is expected3");
 
-  TEST_ASSERT_(newllist->head == added1, "Added1 head is added1");
-  TEST_ASSERT_(newllist->tail == added3, "Added1 tail is added3");
+  TEST_ASSERT_(Llist_head(newllist) == added1, "Added1 head is added1");
+  TEST_ASSERT_(Llist_tail(newllist) == added3, "Added1 tail is added3");
   TEST_ASSERT_(newllist->next == added2, "Added1 next is added2");
   TEST_ASSERT_(newllist->back == NULL, "Added1 back is NULL");
 
-  TEST_ASSERT_(newllist->next->head == added1, "Added2 head is added1");
-  TEST_ASSERT_(newllist->next->tail == added3, "Added2 tail is added3");
+  TEST_ASSERT_(Llist_head(newllist->next) == added1, "Added2 head is added1");
+  TEST_ASSERT_(Llist_tail(newllist->next) == added3, "Added2 tail is added3");
   TEST_ASSERT_(newllist->next->next == added3, "Added2 next is added3");
   TEST_ASSERT_(newllist->next->back == added1, "Added2 back is added1");
 
-  TEST_ASSERT_(newllist->next->next->head == added1, "Added3 head is added1");
-  TEST_ASSERT_(newllist->next->next->tail == added3, "Added3 tail is added3");
+  TEST_ASSERT_(Llist_head(newllist->next->next) == added1, "Added3 head is added1");
+  TEST_ASSERT_(Llist_tail(newllist->next->next) == added3, "Added3 tail is added3");
   TEST_ASSERT_(newllist->next->next->next == NULL, "Added3 next is NUL");
   TEST_ASSERT_(newllist->next->next->back == added2, "Added3 back is added2");
 
@@ -323,13 +323,13 @@ void test_newemptylist_append_three_items_del_last_item(void) {
   TEST_ASSERT_(newllist->next->back == added1, "after delete Llist_new has added1");
   TEST_ASSERT_(newllist->next->next == NULL, "after delete Llist_new has no 3rd item");
 
-  TEST_ASSERT_(newllist->head == added1, "Added1 head is added1");
-  TEST_ASSERT_(newllist->tail == added2, "Added1 tail is added2");
+  TEST_ASSERT_(Llist_head(newllist) == added1, "Added1 head is added1");
+  TEST_ASSERT_(Llist_tail(newllist) == added2, "Added1 tail is added2");
   TEST_ASSERT_(newllist->next == added2, "Added1 next is added2");
   TEST_ASSERT_(newllist->back == NULL, "Added1 back is NULL");
 
-  TEST_ASSERT_(newllist->next->head == added1, "Added2 head is added1");
-  TEST_ASSERT_(newllist->next->tail == added2, "Added2 tail is added2");
+  TEST_ASSERT_(Llist_head(newllist->next) == added1, "Added2 head is added1");
+  TEST_ASSERT_(Llist_tail(newllist->next) == added2, "Added2 tail is added2");
   TEST_ASSERT_(newllist->next->next == NULL, "Added2 next is NULL");
   TEST_ASSERT_(newllist->next->back == added1, "Added2 back is added1");
 
@@ -343,26 +343,26 @@ void test_newemptylist_append_three_items_check_tail_head(void) {
   Llist *newllist = Llist_new_empty();
   TEST_ASSERT_(newllist != NULL, "Llist_new expected to be not NULL");
 
-  TEST_ASSERT_(newllist->tail == newllist, "Llist_new tail is Llist_new");
-  TEST_ASSERT_(newllist->head == newllist, "Llist_new head is Llist_new");
+  TEST_ASSERT_(Llist_tail(newllist) == newllist, "Llist_new tail is Llist_new");
+  TEST_ASSERT_(Llist_head(newllist) == newllist, "Llist_new head is Llist_new");
 
   Llist *added1 = Llist_append(newllist, expected1);
-  TEST_ASSERT_(newllist->tail == added1, "Llist_new tail is added1");
-  TEST_ASSERT_(newllist->head == newllist, "Llist_new head is Llist_new");
-  TEST_ASSERT_(added1->tail == added1, "Llist_new tail is added1");
-  TEST_ASSERT_(added1->head == newllist, "Llist_new head is Llist_new");
+  TEST_ASSERT_(Llist_tail(newllist) == added1, "Llist_new tail is added1");
+  TEST_ASSERT_(Llist_head(newllist) == newllist, "Llist_new head is Llist_new");
+  TEST_ASSERT_(Llist_tail(added1) == added1, "Llist_new tail is added1");
+  TEST_ASSERT_(Llist_head(added1) == newllist, "Llist_new head is Llist_new");
 
   Llist *added2 = Llist_append(newllist, expected2);
-  TEST_ASSERT_(newllist->tail == added2, "Llist_new tail is added2");
-  TEST_ASSERT_(newllist->head == newllist, "Llist_new head is newllist");
-  TEST_ASSERT_(added2->tail == added2, "Llist_new tail is added2");
-  TEST_ASSERT_(added2->head == newllist, "Llist_new head is Llist_new");
+  TEST_ASSERT_(Llist_tail(newllist) == added2, "Llist_new tail is added2");
+  TEST_ASSERT_(Llist_head(newllist) == newllist, "Llist_new head is newllist");
+  TEST_ASSERT_(Llist_tail(added2) == added2, "Llist_new tail is added2");
+  TEST_ASSERT_(Llist_head(added2) == newllist, "Llist_new head is Llist_new");
 
   Llist *added3 = Llist_append(newllist, expected3);
-  TEST_ASSERT_(newllist->tail == added3, "Llist_new tail is added3");
-  TEST_ASSERT_(newllist->head == newllist, "Llist_new head is newllist");
-  TEST_ASSERT_(added3->tail == added3, "Llist_new tail is added3");
-  TEST_ASSERT_(added3->head == newllist, "Llist_new head is Llist_new");
+  TEST_ASSERT_(Llist_tail(newllist) == added3, "Llist_new tail is added3");
+  TEST_ASSERT_(Llist_head(newllist) == newllist, "Llist_new head is newllist");
+  TEST_ASSERT_(Llist_tail(added3) == added3, "Llist_new tail is added3");
+  TEST_ASSERT_(Llist_head(added3) == newllist, "Llist_new head is Llist_new");
 
   TEST_ASSERT_(newllist == added1, "Llist_new has added1");
   TEST_ASSERT_(newllist->next == added2, "Llist_new has added2");
@@ -390,26 +390,26 @@ void test_newemptylist_prepend_three_items_check_tail_head(void) {
   void *expected3 = (void *)77;
   Llist *newllist = Llist_new_empty();
   TEST_ASSERT_(newllist != NULL, "Llist_new expected to be not NULL");
-  TEST_ASSERT_(newllist->tail == newllist, "Llist_new tail is Llist_new");
-  TEST_ASSERT_(newllist->head == newllist, "Llist_new head is Llist_new");
+  TEST_ASSERT_(Llist_tail(newllist) == newllist, "Llist_new tail is Llist_new");
+  TEST_ASSERT_(Llist_head(newllist) == newllist, "Llist_new head is Llist_new");
 
   Llist *added1 = Llist_prepend(newllist, expected1);
-  TEST_ASSERT_(newllist->tail == added1, "Llist_new tail is added1");
-  TEST_ASSERT_(newllist->head == newllist, "Llist_new head is Llist_new");
-  TEST_ASSERT_(added1->head == added1, "Llist_new head is added1");
-  TEST_ASSERT_(added1->tail == newllist, "Llist_new tail is Llist_new");
+  TEST_ASSERT_(Llist_tail(newllist) == added1, "Llist_new tail is added1");
+  TEST_ASSERT_(Llist_head(newllist) == newllist, "Llist_new head is Llist_new");
+  TEST_ASSERT_(Llist_head(added1) == added1, "Llist_new head is added1");
+  TEST_ASSERT_(Llist_tail(added1) == newllist, "Llist_new tail is Llist_new");
 
   Llist *added2 = Llist_prepend(newllist, expected2);
-  TEST_ASSERT_(newllist->head == added2, "Llist_new head is added2");
-  TEST_ASSERT_(newllist->tail == newllist, "Llist_new tail is newllist");
-  TEST_ASSERT_(added2->head == added2, "Llist_new head is added2");
-  TEST_ASSERT_(added2->tail == newllist, "Llist_new tail is Llist_new");
+  TEST_ASSERT_(Llist_head(newllist) == added2, "Llist_new head is added2");
+  TEST_ASSERT_(Llist_tail(newllist) == newllist, "Llist_new tail is newllist");
+  TEST_ASSERT_(Llist_head(added2) == added2, "Llist_new head is added2");
+  TEST_ASSERT_(Llist_tail(added2) == newllist, "Llist_new tail is Llist_new");
 
   Llist *added3 = Llist_prepend(newllist, expected3);
-  TEST_ASSERT_(newllist->head == added3, "Llist_new head is added3");
-  TEST_ASSERT_(newllist->tail == newllist, "Llist_new tail is newllist");
-  TEST_ASSERT_(added3->head == added3, "Llist_new head is added3");
-  TEST_ASSERT_(added3->tail == newllist, "Llist_new tail is Llist_new");
+  TEST_ASSERT_(Llist_head(newllist) == added3, "Llist_new head is added3");
+  TEST_ASSERT_(Llist_tail(newllist) == newllist, "Llist_new tail is newllist");
+  TEST_ASSERT_(Llist_head(added3) == added3, "Llist_new head is added3");
+  TEST_ASSERT_(Llist_tail(added3) == newllist, "Llist_new tail is Llist_new");
 
   Llist_free(newllist);
 }
