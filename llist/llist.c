@@ -51,18 +51,12 @@ Llist *Llist_append(Llist *l, void *v) {
     return l;
   }
 
-  Llist *curr = l;
-  while (curr->next != NULL) {
-    curr = curr->next;
-  }
-
   Llist *newl = NewLlist(v);
-
-  curr->next = newl;
-  newl->back = curr;
+  l->tail->next = newl;
+  newl->back = l->tail;
   newl->payload = v;
 
-  curr = newl;
+  Llist *curr = newl;
   while (curr->back != NULL) {
     curr->head = l->head;
     curr->tail = newl;
