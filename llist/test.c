@@ -370,6 +370,36 @@ void test_newemptylist_append_three_items_check_tail_head(void) {
   Llist_free(newllist);
 }
 
+void test_newemptylist_prepend_three_items_check_tail_head(void) {
+  void *expected1 = (void *)55;
+  void *expected2 = (void *)66;
+  void *expected3 = (void *)77;
+  Llist *newllist = Llist_new_empty();
+  TEST_ASSERT_(newllist != NULL, "Llist_new expected to be not NULL");
+  TEST_ASSERT_(newllist->tail == newllist, "Llist_new tail is Llist_new");
+  TEST_ASSERT_(newllist->head == newllist, "Llist_new head is Llist_new");
+
+  Llist *added1 = Llist_prepend(newllist, expected1);
+  TEST_ASSERT_(newllist->tail == added1, "Llist_new tail is added1");
+  TEST_ASSERT_(newllist->head == newllist, "Llist_new head is Llist_new");
+  TEST_ASSERT_(added1->head == added1, "Llist_new head is added1");
+  TEST_ASSERT_(added1->tail == newllist, "Llist_new tail is Llist_new");
+
+  Llist *added2 = Llist_prepend(newllist, expected2);
+  TEST_ASSERT_(newllist->head == added2, "Llist_new head is added2");
+  TEST_ASSERT_(newllist->tail == newllist, "Llist_new tail is newllist");
+  TEST_ASSERT_(added2->head == added2, "Llist_new head is added2");
+  TEST_ASSERT_(added2->tail == newllist, "Llist_new tail is Llist_new");
+
+  Llist *added3 = Llist_prepend(newllist, expected3);
+  TEST_ASSERT_(newllist->head == added3, "Llist_new head is added3");
+  TEST_ASSERT_(newllist->tail == newllist, "Llist_new tail is newllist");
+  TEST_ASSERT_(added3->head == added3, "Llist_new head is added3");
+  TEST_ASSERT_(added3->tail == newllist, "Llist_new tail is Llist_new");
+
+  Llist_free(newllist);
+}
+
 TEST_LIST = {
   {"Llist_new_empty() returns an empty list", test_newemptyllist},
   {"Llist_new() returns a list", test_newllist},
@@ -383,5 +413,6 @@ TEST_LIST = {
   {"Llist_new() append three elements, delete item in the middle", test_newemptylist_append_three_items_del_item_in_the_middle},
   {"Llist_new() append three elements, delete last item", test_newemptylist_append_three_items_del_last_item},
   {"Llist() append three elements, check tail and head", test_newemptylist_append_three_items_check_tail_head},
+  {"Llist() prepend three elements, check tail and head", test_newemptylist_prepend_three_items_check_tail_head},
   {0}
 };

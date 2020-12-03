@@ -68,6 +68,34 @@ Llist *Llist_append(Llist *l, void *v) {
   return newl;
 }
 
+Llist *Llist_prepend(Llist *l, void *v) {
+  assert(l != NULL);
+
+  if (l->payload == NULL) {
+    l->payload = v;
+
+    return l;
+  }
+
+  Llist *newl = Llist_new(v);
+  l->back = newl;
+  newl->next = l;
+  newl->back = NULL;
+  newl->payload = v;
+
+  Llist *curr = newl;
+  while (curr->next != NULL) {
+    curr->head = newl;
+    curr->tail = l->tail;
+    curr = curr->next;
+  }
+
+  curr->head = newl;
+  curr->tail = l->tail;
+
+  return newl;
+}
+
 bool Llist_del(Llist *l) {
   assert(l != NULL);
 
