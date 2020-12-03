@@ -100,6 +100,15 @@ void test_newemptyllist_append_three_items(void) {
   TEST_ASSERT_(expected3 == actual3, "NewList->next->next->payload is defined with the expected3");
   TEST_ASSERT_(newllist->next->next->next == NULL, "NewLlist within three nexts is NULL");
 
+  TEST_ASSERT_(newllist->head == added1, "Added1 head is added1");
+  TEST_ASSERT_(newllist->tail == added3, "Added1 tail is added3");
+  TEST_ASSERT_(newllist->next->head == added1, "Added2 head is added1");
+  TEST_ASSERT_(newllist->next->tail == added3, "Added2 tail is added3");
+  TEST_ASSERT_(newllist->next->next->head == added1, "Added3 head is added1");
+  TEST_ASSERT_(newllist->next->next->tail == added3, "Added3 tail is added3");
+  TEST_ASSERT_(newllist->next == added2, "NewLlist->next is added2");
+  TEST_ASSERT_(newllist->next->next == added3, "NewLlist->next->next is added3");
+
   FreeLlist(newllist);
 }
 
@@ -259,6 +268,7 @@ void test_newemptylist_append_three_items_del_last_item(void) {
 
   FreeLlist(newllist);
 }
+
 void test_newemptylist_append_three_items_check_tail_head(void) {
   void *expected1 = (void *)55;
   void *expected2 = (void *)66;
