@@ -139,7 +139,15 @@ bool Llist_del(Llist *l) {
       break;
     }
 
-    break;
+    if (l->tail == l->head) {
+      l->tail = l;
+      l->head = l;
+      l->next = NULL;
+      l->back = NULL;
+      l->payload = NULL;
+
+      return true;
+    }
   }
 
   Llist *curr = head;
@@ -155,6 +163,7 @@ bool Llist_del(Llist *l) {
   l->next = NULL;
   l->payload = NULL;
   Llist_free(l);
+  l = NULL;
 
   return true;
 }

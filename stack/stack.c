@@ -35,10 +35,10 @@ void* Stack_pop(Stack *s) {
   assert(s != NULL);
   assert(s->list != NULL);
 
-  Llist *tail = s->list->tail;
-  if (tail != NULL) {
-    void *v = tail->payload;
-    Llist_del(tail);
+  if (s->list->tail != NULL) {
+    void *v = s->list->tail->payload;
+    s->list->tail->payload = NULL;
+    Llist_del(s->list->tail);
 
     return v;
   }

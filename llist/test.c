@@ -414,19 +414,34 @@ void test_newemptylist_prepend_three_items_check_tail_head(void) {
   Llist_free(newllist);
 }
 
+void test_newemptylist_delete_tail(void) {
+  Llist *newllist = Llist_new_empty();
+  TEST_ASSERT_(newllist != NULL, "Llist_new expected to be not NULL");
+  TEST_ASSERT_(Llist_tail(newllist) == newllist, "Llist_new tail is Llist_new");
+  TEST_ASSERT_(Llist_head(newllist) == newllist, "Llist_new head is Llist_new");
+
+  bool deleted = Llist_del(newllist->tail);
+  TEST_ASSERT_(newllist != NULL, "Llist_new expected to be not NULL");
+  TEST_ASSERT_(Llist_head(newllist) == newllist, "Llist_new head is newllist");
+  TEST_ASSERT_(Llist_tail(newllist) == newllist, "Llist_new tail is newllist");
+
+  Llist_free(newllist);
+}
+
 TEST_LIST = {
-  {"Llist_new_empty() returns an empty list", test_newemptyllist},
-  {"Llist_new() returns a list", test_newllist},
-  {"Llist_new_empty() append one item", test_newemptyllist_append_one_item},
-  {"Llist_new_empty() append two items", test_newemptyllist_append_two_items},
-  {"Llist_new_empty() append two items, second item added from the head", test_newemptyllist_append_from_head_append_two_items},
-  {"Llist_new_empty() append three items", test_newemptyllist_append_three_items},
-  {"Llist_new_empty() append three items, append then from the head", test_newemptyllist_append_from_head_append_three_items},
-  {"NewLList() delete first item", test_newemptylist_append_del_item},
-  {"Llist_new() append three elements, delete first item", test_newemptylist_append_three_items_del_first_item},
-  {"Llist_new() append three elements, delete item in the middle", test_newemptylist_append_three_items_del_item_in_the_middle},
-  {"Llist_new() append three elements, delete last item", test_newemptylist_append_three_items_del_last_item},
-  {"Llist() append three elements, check tail and head", test_newemptylist_append_three_items_check_tail_head},
-  {"Llist() prepend three elements, check tail and head", test_newemptylist_prepend_three_items_check_tail_head},
+  {"Llist_new_empty returns an empty list", test_newemptyllist},
+  {"Llist_new returns a list", test_newllist},
+  {"Llist_new_empty append one item", test_newemptyllist_append_one_item},
+  {"Llist_new_empty append two items", test_newemptyllist_append_two_items},
+  {"Llist_new_empty append two items, second item added from the head", test_newemptyllist_append_from_head_append_two_items},
+  {"Llist_new_empty append three items", test_newemptyllist_append_three_items},
+  {"Llist_new_empty append three items, append then from the head", test_newemptyllist_append_from_head_append_three_items},
+  {"NewLList delete first item", test_newemptylist_append_del_item},
+  {"Llist_new append three elements, delete first item", test_newemptylist_append_three_items_del_first_item},
+  {"Llist_new append three elements, delete item in the middle", test_newemptylist_append_three_items_del_item_in_the_middle},
+  {"Llist_new append three elements, delete last item", test_newemptylist_append_three_items_del_last_item},
+  {"Llist append three elements, check tail and head", test_newemptylist_append_three_items_check_tail_head},
+  {"Llist prepend three elements, check tail and head", test_newemptylist_prepend_three_items_check_tail_head},
+  {"Llist empty delete its tail means delete itself", test_newemptylist_delete_tail},
   {0}
 };
