@@ -32,5 +32,16 @@ void Stack_push(Stack *s, void *v) {
 }
 
 void* Stack_pop(Stack *s) {
+  assert(s != NULL);
+  assert(s->list != NULL);
+
+  Llist *tail = s->list->tail;
+  if (tail != NULL) {
+    void *v = tail->payload;
+    Llist_del(tail);
+
+    return v;
+  }
+
   return NULL;
 }
